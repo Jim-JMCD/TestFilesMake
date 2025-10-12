@@ -1,7 +1,7 @@
 # TestFilesMake
 ### A test file generator that fills files with random bytes in a single directory
--
-This repository only contains X86-64 excutable. For the ARM version go to [TestFilesMake_for_ARMaarch64](https://github.com/Jim-JMCD/TestFilesMake_for_ARM_aarch64/)
+
+This repository only contains X86-64 excutable. For the ARM version go to [TestFilesMake_for_ARM_aarch64](https://github.com/Jim-JMCD/TestFilesMake_for_ARM_aarch64/)
 
 TestFilesMake is a Linux portable executable created from the bash script [Test_Files_Make](https://github.com/Jim-JMCD/Test_Files_Make/) (private Github repository) using shc. 
 
