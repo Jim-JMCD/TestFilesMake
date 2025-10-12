@@ -1,7 +1,7 @@
 # TestFilesMake
 ### A test file generator that fills files with random bytes in a single directory
 
-TestFilesMake is a Linux portable executable created from the bash script [TestFiles_Make](https://github.com/Jim-JMCD/TestFiles-Make/) (private Github repository) using shc. 
+TestFilesMake is a Linux portable executable created from the bash script [Test_Files_Make](https://github.com/Jim-JMCD/Test_Files_Make/) (private Github repository) using shc. 
 
 ### Dependency
 This requires a bash environment to run. 
