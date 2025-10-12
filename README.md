@@ -3,6 +3,11 @@
 
 TestFilesMake is a Linux portable executable created from the bash script [Test_Files_Make](https://github.com/Jim-JMCD/Test_Files_Make/) (private Github repository) using shc. 
 
+Use [TestFilesCreate](https://github.com/Jim-JMCD/TestFilesCreate/) as an alternative : 
+* If a tree of directories is required for test data;
+* If random sized data files is required. Size range is uswer defined
+* If you do not require sparse files. Sparse files only avalaible in TestFilesMake 
+
 ### Dependency
 This requires a bash environment to run. 
 An exceutable created from the *shc* utility always requires bash. More : [Github shc](https://github.com/neurobin/shc)   
