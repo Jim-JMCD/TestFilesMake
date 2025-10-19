@@ -16,16 +16,19 @@ An exceutable created from the *shc* utility always requires bash. More : [Githu
 
 ### OPTIONS
 __File Contents__ 
- *  Binary (default) from /dev/urandom.  (Not compressible)
- * __-P__ any printable characters from the ASCI set. Optional
- * __-D__ Only the 0 to 9 digits. Optioal
- * __-S__ Sparse file nulls. Only to be used in Linux, Unix and WSL2. The sparse file option is __NOT__ to be used on MS Windows filesystems and WSL1, MSYS2, Gitbash and Cygwin - see below
+* Each file is filled with its own set of ramdom data, no files are copied.
+* Binary (default) from /dev/urandom.  (Not compressible)
+* __-P__ any printable characters from the ASCI set. Optional
+* __-D__ Only the 0 to 9 digits. Optioal
+* __-S__ Sparse file nulls. Only to be used in Linux, Unix and WSL2. The sparse file option is __NOT__ to be used on MS Windows filesystems and WSL1, MSYS2, Gitbash and Cygwin - see below
 
 __Other Options__
 
 __-f \<file size\>__   Manditory, minimum 1 byte. File sizes have to be designated by B, K, M or G. Example 2KiB = 2K, 3MiB = 3M 200GiB = 200G
 
-__-o \<exisiting directory\>__  Optional, create file in a exisiting directory. Default is your current directory.  
+__-o \<exisiting directory\>__  Optional, create file in a exisiting directory. Default is your current directory.
+
+Files created will have names in the format of **tfm_YYYYMMDD-mmss_file\_\<file number\>**  
 
 ### NOTES
 __File Contents: Digits__ 
@@ -60,16 +63,17 @@ __-S__ Null filled sparse files. Although disk usage is minimal their apparent s
 __VALIDATE FILE CONTENTS__
 
 ___Validate all Files:___
-
+~~~
     od -N <bytes> -Ax -t x1z <file name>
-     
+~~~
 * Where \<bytes\> is the number to check from beginning of file.
 * Non-printable characters will appear as "dots"
 * For sparse files omit \<bytes\> as it not required.
 
 ___Validate printable character distribution:___
-   
+~~~   
     od -a <file name>  | cut -b 9- | tr " " \\n | egrep -v "^$" | sort | uniq -c
+~~~
 _Output_
 * Column 1 : Character count
 * Column 2 : Character being counted. This column should only contain a single charcter, if not then file contents is binary data.
@@ -79,8 +83,6 @@ ___Validate sparse fILes:___
   * _du -b_ Shows disk usage in bytes.
   * _du -b --apparent-size_ Shows the size the user sees and used filesystem capacity calculations
 
-
-
 __NOTES__
 * Binary data may render storage and transmission data dedplication and compression ineffective.
 * The smaller range of printable characters used the longer the script runs.
@@ -89,6 +91,54 @@ __NOTES__
 
 _EXAMPLES_
 
+Create ten 5 MiB files containing a randonly distribution of the first 30 printable characters of the ASCII character set.   
+~~~
+$./Test_files_make -P 30 -f 5M -n 10
+Creating 10x 5M files in /home/ted/tmp/
+Files containing random selection from the 30 char set: !"#$%&'()*+,-./0123456789:;<=>
+
+Creating file 1      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_1
+Creating file 2      Done: 5.0M  /home/ted/tmp//tfm_20251019-1916-53_file_2
+Creating file 3      Done: 5.0M  /home/ted/tmp//tfm_20251019-1916-53_file_3
+Creating file 4      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_4
+Creating file 5      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_5
+Creating file 6      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_6
+Creating file 7      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_7
+Creating file 8      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_8
+Creating file 9      Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_9
+Creating file 10     Done: 5.0M  /home/ted/tmp/tfm_20251019-1916-53_file_10
+
+Total Directory Usage of output directory: /home/ted/tmp
+          102435.066 KiB
+             100.427 MiB
+               0.098 GiB
+
+Total disk usage (du -sk) : 101M
+
+NOTE: Totals are for the entire directory contents not just test files made by this script run
+$ 
+~~~
+Create five 1 GiB **sparse files** 
+~~~
+$./TestFilesMake -S -f 1G -n 5
+Creating 5x 1G SPARSE files in /home/ted/tmp
+
+Creating file 1       DONE: Apparent Size: 1.0G Disk Usage: 0  /home/ted/tmp/tfm_20251019-1937-01_Sfile_1
+Creating file 2       DONE: Apparent Size: 1.0G Disk Usage: 0  /home/bob/tmp/tfm_20251019-1937-01_Sfile_2
+Creating file 3       DONE: Apparent Size: 1.0G Disk Usage: 0  /home/bob/tmp/tfm_20251019-1937-01_Sfile_3
+Creating file 4       DONE: Apparent Size: 1.0G Disk Usage: 0  /home/bob/tmp/tfm_20251019-1937-01_Sfile_4
+Creating file 5       DONE: Apparent Size: 1.0G Disk Usage: 0  /home/bob/tmp/tfm_20251019-1937-01_Sfile_5
+
+Total Directory Usage of output directory: /home/ted/tmp
+         5242907.188 KiB
+            5140.105 MiB
+               5.020 GiB
+
+Total disk usage (du -sk) : 32K
+
+NOTE: Totals are for the entire directory contents not just test files made by this script run
+$
+~~~
 Create fifty 5GiB files containing only the randonly distributed digits 0, 1 , 2, 3 and 4   
 
     TestFilesMake -D 5 -f 5G -n 50
