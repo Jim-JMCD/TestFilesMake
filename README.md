@@ -11,8 +11,8 @@ Use [TestFilesCreate](https://github.com/Jim-JMCD/TestFilesCreate/) as an altern
 * If you do not require sparse files. Sparse files only avalaible in TestFilesMake 
 
 ### Dependency
-This requires a bash environment to run. 
-An exceutable created from the *shc* utility always requires bash. More : [Github shc](https://github.com/neurobin/shc)   
+This requires a Linux bash environment to run. Will run in Microsoft WSL2, TrestFilesMake will not run in MSYS2, Gitbash and Cygwin environmants
+An exceutable created from the *shc* utility. More : [Github shc](https://github.com/neurobin/shc)   
 
 ### OPTIONS
 __File Contents__ 
