@@ -11,7 +11,7 @@ Use [TestFilesCreate](https://github.com/Jim-JMCD/TestFilesCreate/) as an altern
 * If you do not require sparse files. Sparse files only avalaible in TestFilesMake 
 
 ### Dependency
-This requires a Linux bash environment to run. Will run in Microsoft WSL2, TestFilesMake will not run in MSYS2, Gitbash and Cygwin environmants.
+This requires a Linux bash environment to run. Will run in Microsoft WSL2(Linux), TestFilesMake will not run in MSYS2, Gitbash and Cygwin environmants.
 
 An exceutable created from the *shc* utility. More : [Github shc](https://github.com/neurobin/shc)   
 
