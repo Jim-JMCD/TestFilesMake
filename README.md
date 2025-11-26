@@ -8,6 +8,7 @@ testFilesMake is a Linux portable executable created from the bash script [Test_
 Use [testFilesCreate](https://github.com/Jim-JMCD/testFilesCreate/) as an alternative : 
 * If a tree of directories is required for test data;
 * If random sized data files are required. Size range is user defined
+* If all files created have to be identical.
 * If you do not require sparse files. Sparse files only avalaible in testFilesMake 
 
 ### Dependency
